@@ -29,9 +29,9 @@ class UserAccountManagementControllerTest {
         // Given
 
         // When&Then
-        mvc.perform(get("/management/user-account"))
+        mvc.perform(get("/management/userAccount"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("management/userAccounts"));
     }
 }
