@@ -23,7 +23,7 @@ class UserAccountManagementControllerTest {
         this.mvc = mvc;
     }
 
-    @DisplayName("[View][GET] 댓글 관리 페이지 - 정상 호출")
+    @DisplayName("[View][GET] 회원 관리 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestingUserAccountManagementView_thenReturnsUserAccountManagementView() throws Exception {
         // Given
