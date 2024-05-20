@@ -1,5 +1,8 @@
 package com.studyproject.boardadminproject.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -15,8 +18,10 @@ public class ArticleManagementController {
     @GetMapping
     public String articles(
             @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            HttpServletRequest request, HttpServletResponse response, HttpSession session,
             Model model
     ) {
+        model.addAttribute("requestURI", request.getRequestURI());
         return "management/articles";
     }
 }
