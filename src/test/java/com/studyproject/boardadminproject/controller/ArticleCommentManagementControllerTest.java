@@ -29,9 +29,9 @@ class ArticleCommentManagementControllerTest {
         // Given
 
         // When&Then
-        mvc.perform(get("/management/articleComments"))
+        mvc.perform(get("/management/article-comments"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("management/articleComments"));
+                .andExpect(view().name("management/article-comments"));
     }
 }
