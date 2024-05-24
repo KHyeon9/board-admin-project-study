@@ -47,12 +47,12 @@ class ArticleCommentManagementServiceTest {
         @DisplayName("댓글 API를 호출하면, 댓글을 가져온다.")
         @Test
         void givenNothing_whenCallingCommentApi_thenReturnsCommentList() {
-            // Given
+            // Arrange
 
-            // When
+            // Act
             List<ArticleCommentDto> result = sut.getArticleComments();
 
-            // Then
+            // Assert
             System.out.println(result.stream().findFirst());
             assertThat(result).isNotNull();
         }
@@ -161,7 +161,6 @@ class ArticleCommentManagementServiceTest {
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
                 "hyeonTest",
-                Set.of(RoleType.ADMIN),
                 "hyeon-test@email.con",
                 "hyeon-test",
                 "test memo"
