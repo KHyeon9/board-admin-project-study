@@ -1,6 +1,6 @@
 package com.studyproject.boardadminproject.controller;
 
-import com.studyproject.boardadminproject.config.SecurityConfig;
+import com.studyproject.boardadminproject.config.TestSecurityConfig;
 import com.studyproject.boardadminproject.dto.UserAccountDto;
 import com.studyproject.boardadminproject.service.UserAccountManagementService;
 import org.junit.jupiter.api.DisplayName;
@@ -16,11 +16,12 @@ import java.util.List;
 
 import static org.mockito.BDDMockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("컨트롤러 - 회원 관리")
-@Import(SecurityConfig.class)
+@Import(TestSecurityConfig.class)
 @WebMvcTest
 class UserAccountManagementControllerTest {
 
