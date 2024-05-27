@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -35,6 +36,7 @@ class ArticleManagementControllerTest {
         this.mvc = mvc;
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[View][GET] 게시글 관리 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestingArticleManagementView_thenReturnsArticleManagementView() throws Exception {
@@ -51,6 +53,7 @@ class ArticleManagementControllerTest {
         then(articleManagementService).should().getArticles();
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[Data][GET] 게시글 1개 - 정상 호출")
     @Test
     void givenArticleId_whenRequestingArticle_thenReturnsArticle() throws Exception {
@@ -60,7 +63,7 @@ class ArticleManagementControllerTest {
         given(articleManagementService.getArticle(articleId)).willReturn(articleDto);
 
         // When&Then
-        mvc.perform(get("/memanagement/articles/" + articleId))
+        mvc.perform(get("/management/articles/" + articleId))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").value(articleId))
@@ -71,6 +74,7 @@ class ArticleManagementControllerTest {
         then(articleManagementService).should().getArticle(articleId);
     }
 
+    @WithMockUser(username = "tester", roles = "MANAGER")
     @DisplayName("[View][POST] 게시글 삭제 - 정상 호출")
     @Test
     void givenArticleId_whenRequestingDeletion_thenRedirectsToArticleManagementView() throws Exception {

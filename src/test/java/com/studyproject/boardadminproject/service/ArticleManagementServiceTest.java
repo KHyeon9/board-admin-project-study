@@ -32,7 +32,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 @DisplayName("비지니스 로직 - 게시글 관리")
 class ArticleManagementServiceTest {
 
-    // @Disabled("실제 API 호출 결과를 관찰하므로 평상시에는 비활성화")
+    @Disabled("실제 API 호출 결과를 관찰하므로 평상시에는 비활성화")
     @DisplayName("실제 API 호출 테스트")
     @SpringBootTest
     @Nested
