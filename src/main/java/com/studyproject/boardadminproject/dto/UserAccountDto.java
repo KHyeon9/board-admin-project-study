@@ -1,10 +1,6 @@
 package com.studyproject.boardadminproject.dto;
 
-import com.studyproject.boardadminproject.domain.AdminAccount;
-import com.studyproject.boardadminproject.domain.constant.RoleType;
-
 import java.time.LocalDateTime;
-import java.util.Set;
 
 public record UserAccountDto(
         String userId,

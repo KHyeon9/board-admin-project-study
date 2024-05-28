@@ -1,11 +1,11 @@
 package com.studyproject.boardadminproject.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.studyproject.boardadminproject.domain.constant.RoleType;
 import com.studyproject.boardadminproject.dto.ArticleCommentDto;
 import com.studyproject.boardadminproject.dto.UserAccountDto;
 import com.studyproject.boardadminproject.dto.properties.ProjectProperties;
 import com.studyproject.boardadminproject.dto.response.ArticleCommentClientResponse;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,17 +21,17 @@ import org.springframework.test.web.client.MockRestServiceServer;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @ActiveProfiles("test")
 @DisplayName("비지니스 로직 - 댓글 관리")
 class ArticleCommentManagementServiceTest {
 
-    //@Disabled("실제 API 호출 결과 관찰용이므로 평상시엔 비활성화")
+    @Disabled("실제 API 호출 결과 관찰용이므로 평상시엔 비활성화")
     @DisplayName("실제 API 호출 테스트")
     @SpringBootTest
     @Nested
@@ -84,9 +84,10 @@ class ArticleCommentManagementServiceTest {
             // Given
             ArticleCommentDto expectedComment = createArticleCommentDto("댓글");
             ArticleCommentClientResponse expectedResponse = ArticleCommentClientResponse.of(List.of(expectedComment));
-            server.expect(requestTo(projectProperties.board().url() + "/api/articleComments?size=10000"))
+            server
+                    .expect(requestTo(projectProperties.board().url() + "/api/articleComments?size=10000"))
                     .andRespond(withSuccess(
-                            mapper.writeValueAsString(expectedComment),
+                            mapper.writeValueAsString(expectedResponse),
                             MediaType.APPLICATION_JSON
                     ));
 
@@ -136,7 +137,7 @@ class ArticleCommentManagementServiceTest {
                     .andRespond(withSuccess());
 
             // When
-            sut.deleteArticleCommnet(articleCommentId);
+            sut.deleteArticleComment(articleCommentId);
 
             // Then
             server.verify();
