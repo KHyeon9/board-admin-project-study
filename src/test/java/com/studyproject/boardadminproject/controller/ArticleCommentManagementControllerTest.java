@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
@@ -34,6 +35,7 @@ class ArticleCommentManagementControllerTest {
         this.mvc = mvc;
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[View][GET] 댓글 관리 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestingArticleCommentManagementView_thenReturnsArticleCommentManagementView() throws Exception {
@@ -50,6 +52,7 @@ class ArticleCommentManagementControllerTest {
         then(articleCommentManagementService).should().getArticleComments();
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[Data][GET] 댓글 1개 - 정상 호출")
     @Test
     void givenCommentId_whenRequestingArticleComment_thenReturnsArticleComment() throws Exception {
@@ -69,12 +72,13 @@ class ArticleCommentManagementControllerTest {
         then(articleCommentManagementService).should().getArticleComment(articleCommentId);
     }
 
+    @WithMockUser(username = "tester", roles = "MANAGER")
     @DisplayName("[View][POST] 댓글 삭제 - 정상 호출")
     @Test
     void givenCommentId_whenRequestingDeletion_thenRedirectsToArticleCommentManagementView() throws Exception {
         // Given
         Long articleCommentId = 1L;
-        willDoNothing().given(articleCommentManagementService).deleteArticleCommnet(articleCommentId);
+        willDoNothing().given(articleCommentManagementService).deleteArticleComment(articleCommentId);
 
         // When&Then
         mvc.perform(post("/management/article-comments/" + articleCommentId)
@@ -84,7 +88,7 @@ class ArticleCommentManagementControllerTest {
                 .andExpect(view().name("redirect:/management/article-comments"))
                 .andExpect(redirectedUrl("/management/article-comments"));
 
-        then(articleCommentManagementService).should().deleteArticleCommnet(articleCommentId);
+        then(articleCommentManagementService).should().deleteArticleComment(articleCommentId);
     }
 
     private ArticleCommentDto createArticleCommentDto(String content) {
