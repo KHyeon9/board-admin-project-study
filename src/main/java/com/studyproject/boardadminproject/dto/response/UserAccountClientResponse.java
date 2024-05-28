@@ -24,7 +24,9 @@ public record UserAccountClientResponse(
         );
     }
 
-    public record Embedded(List<UserAccountDto> userAccountDtos) {}
+    public List<UserAccountDto> userAccounts() { return this.embedded().userAccounts(); }
+
+    public record Embedded(List<UserAccountDto> userAccounts) {}
 
     public record Page(
             int size,

@@ -44,6 +44,7 @@ class UserAccountManagementServiceTest {
         }
 
         @DisplayName("회원 API를 호출하면, 회원 정보를 가져온다.")
+        @Test
         void givenNothing_whenCallingUserAccountApi_thenReturnsUserAccountList() {
             // Arrange
 
