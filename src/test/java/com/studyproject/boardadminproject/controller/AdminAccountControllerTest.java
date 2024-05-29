@@ -1,7 +1,6 @@
 package com.studyproject.boardadminproject.controller;
 
 import com.studyproject.boardadminproject.config.SecurityConfig;
-import com.studyproject.boardadminproject.config.TestSecurityConfig;
 import com.studyproject.boardadminproject.domain.constant.RoleType;
 import com.studyproject.boardadminproject.dto.AdminAccountDto;
 import com.studyproject.boardadminproject.service.AdminAccountService;
@@ -35,11 +34,11 @@ class AdminAccountControllerTest {
 
     // TestSecurityConfig의 목빈과 충돌하여 다시 아래에 securitySetup를 다시 선언
     @MockBean private AdminAccountService adminAccountService;
-    
+
     public AdminAccountControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
-    
+
     @BeforeTestMethod
     public void securitySetup() {
         given(adminAccountService.searchUser(anyString()))
