@@ -26,7 +26,7 @@ public class AdminAccountService {
     public AdminAccountDto saveUser(String userId, String password, Set<RoleType> roleTypes, String email, String nickname, String memo) {
         return AdminAccountDto.from(
                 adminAccountRepository.save(
-                        AdminAccount.of(userId, password, roleTypes, email, nickname, memo)
+                        AdminAccount.of(userId, password, roleTypes, email, nickname, memo, userId)
                 )
         );
     }
