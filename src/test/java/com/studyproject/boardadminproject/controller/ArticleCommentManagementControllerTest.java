@@ -1,5 +1,6 @@
 package com.studyproject.boardadminproject.controller;
 
+import com.studyproject.boardadminproject.config.GlobalControllerConfig;
 import com.studyproject.boardadminproject.config.TestSecurityConfig;
 import com.studyproject.boardadminproject.dto.ArticleCommentDto;
 import com.studyproject.boardadminproject.dto.UserAccountDto;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Import(TestSecurityConfig.class)
+@Import({TestSecurityConfig.class, GlobalControllerConfig.class})
 @WebMvcTest(ArticleCommentManagementController.class)
 class ArticleCommentManagementControllerTest {
 

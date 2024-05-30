@@ -1,5 +1,6 @@
 package com.studyproject.boardadminproject.controller;
 
+import com.studyproject.boardadminproject.config.GlobalControllerConfig;
 import com.studyproject.boardadminproject.config.TestSecurityConfig;
 import com.studyproject.boardadminproject.dto.UserAccountDto;
 import com.studyproject.boardadminproject.service.UserAccountManagementService;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("컨트롤러 - 회원 관리")
-@Import(TestSecurityConfig.class)
+@Import({TestSecurityConfig.class, GlobalControllerConfig.class})
 @WebMvcTest(UserAccountManagementController.class)
 class UserAccountManagementControllerTest {
 

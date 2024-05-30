@@ -24,6 +24,7 @@
                     .removeClass('accent-dark');
                 $('.modal-body pre').addClass('text-light');
                 $('#dark-mode-checkbox').prop('checked', true);
+                $('.paginate_button.page-item.active a').addClass('text-gray');
             }
         })
 
@@ -37,6 +38,7 @@
                     .addClass('accent-light')
                     .removeClass('accent-dark');
                 $('.modal-body pre').addClass('text-light');
+                $('.paginate_button.page-item.active a').addClass('text-gray');
                 sessionStorage.setItem('darkMode', "true");
             } else {
                 $('body').removeClass('dark-mode');
@@ -47,6 +49,7 @@
                     .addClass('accent-dark')
                     .removeClass('accent-light');
                 $('.modal-body pre').removeClass('text-light');
+                $('.paginate_button.page-item.active a').removeClass('text-gray');
                 sessionStorage.setItem('darkMode', "false");
             }
         });
