@@ -18,8 +18,9 @@ public class CustomErrorController implements ErrorController {
 
         if (status >= 400 && status < 500) {
             return "error/4xx";
+        } else if (status >= 500) {
+            return "error/5xx";
         }
-
-        return "error/5xx";
+        return "forward:/management/articles";
     }
 }

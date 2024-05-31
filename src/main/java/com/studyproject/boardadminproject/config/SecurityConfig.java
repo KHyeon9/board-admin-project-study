@@ -38,9 +38,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole(rolesAboveManager)
                         .anyRequest().authenticated()
                 )
-                .formLogin(login -> login.defaultSuccessUrl("/"))
+                .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
-                .oauth2Login(login -> login.defaultSuccessUrl("/"))
+                .oauth2Login(withDefaults())
                 .build();
     }
 
